@@ -1,0 +1,23 @@
+{
+  imports = [
+    ./bufferline.nix
+    ./which-key.nix
+    ./alpha.nix
+    ./fidget.nix
+    ./conform-nvim.nix
+    ./git-blame.nix
+    ./web-devicons.nix
+    ./telescope.nix
+    ./lazygit.nix
+    ./autopairs.nix
+    ./treesitter.nix
+    ./auto-save.nix
+    ./chatgpt.nix
+    ./lsp.nix
+    ./cmp.nix
+    ./lualine.nix
+    ./oil.nix
+    ./notify.nix
+    ./toggleterm.nix
+  ];
+}
