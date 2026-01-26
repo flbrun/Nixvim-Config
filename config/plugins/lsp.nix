@@ -66,10 +66,13 @@
 
         rust_analyzer = {
           enable = true;
+          installCargo = false;
+          installRustc = false;
           settings."rust-analyzer" = {
             cargo.allFeatures = true;
             check.command = "clippy";
             inlayHints.lifetimeElisionHints.enable = "always";
+
           };
         };
 
@@ -91,11 +94,14 @@
               "http://json.schemastore.org/github-action" = ".github/action.{yml,yaml}";
               "http://json.schemastore.org/ansible-stable-2.9" = "roles/tasks/*.{yml,yaml}";
               "https://json.schemastore.org/kustomization.json" = "kustomization.{yml,yaml}";
-              "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook" = "*play*.{yml,yaml}";
+              "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook" =
+                "*play*.{yml,yaml}";
               "http://json.schemastore.org/chart" = "Chart.{yml,yaml}";
               "https://json.schemastore.org/dependabot-v2" = ".github/dependabot.{yml,yaml}";
-              "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" = "*docker-compose*.{yml,yaml}";
-              "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" = "*flow*.{yml,yaml}";
+              "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" =
+                "*docker-compose*.{yml,yaml}";
+              "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" =
+                "*flow*.{yml,yaml}";
             };
           };
         };
@@ -105,18 +111,42 @@
           extraOptions.settings.json = {
             validate.enable = true;
             schemas = [
-              { fileMatch = [ "package.json" ]; url = "https://json.schemastore.org/package.json"; }
-              { fileMatch = [ "tsconfig*.json" ]; url = "https://json.schemastore.org/tsconfig.json"; }
-              { fileMatch = [ ".eslintrc.json" ".eslintrc" ]; url = "https://json.schemastore.org/eslintrc.json"; }
-              { fileMatch = [ "prettierrc.json" ".prettierrc" ]; url = "https://json.schemastore.org/prettierrc.json"; }
-              { fileMatch = [ "babel.config.json" ]; url = "https://json.schemastore.org/babelrc.json"; }
+              {
+                fileMatch = [ "package.json" ];
+                url = "https://json.schemastore.org/package.json";
+              }
+              {
+                fileMatch = [ "tsconfig*.json" ];
+                url = "https://json.schemastore.org/tsconfig.json";
+              }
+              {
+                fileMatch = [
+                  ".eslintrc.json"
+                  ".eslintrc"
+                ];
+                url = "https://json.schemastore.org/eslintrc.json";
+              }
+              {
+                fileMatch = [
+                  "prettierrc.json"
+                  ".prettierrc"
+                ];
+                url = "https://json.schemastore.org/prettierrc.json";
+              }
+              {
+                fileMatch = [ "babel.config.json" ];
+                url = "https://json.schemastore.org/babelrc.json";
+              }
             ];
           };
         };
         dockerls = {
           enable = true;
           extraOptions = {
-            cmd = [ "${pkgs.nodePackages.dockerfile-language-server-nodejs}/bin/docker-langserver" "--stdio" ];
+            cmd = [
+              "${pkgs.nodePackages.dockerfile-language-server-nodejs}/bin/docker-langserver"
+              "--stdio"
+            ];
             filetypes = [ "dockerfile" ];
             root_dir = ''
               vim.fs.dirname(vim.fs.find({".git", "Dockerfile"}, { upward = true })[1])
