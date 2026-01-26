@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   plugins = {
+    yaml-schema-detect.enable = true;
     lsp-lines.enable = true;
 
     lsp-format = {
