@@ -144,7 +144,7 @@
           enable = true;
           extraOptions = {
             cmd = [
-              "${pkgs.nodePackages.dockerfile-language-server}/bin/docker-langserver"
+              "${pkgs.dockerfile-language-server}/bin/docker-langserver"
               "--stdio"
             ];
             filetypes = [ "dockerfile" ];
