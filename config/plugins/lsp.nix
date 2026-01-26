@@ -88,20 +88,29 @@
             validate = true;
             hover = true;
             completion = true;
-            schemas = {
+
+            schemaStore = {
+              enable = true;
+            };
+        
+            customTags = [
+              "!Ref scalar"
+              "!Sub scalar"
+              "!GetAtt scalar"
+              "!Join sequence"
+              "!FindInMap sequence"
+              "!Select sequence"
+              "!Split sequence"
+              "!ImportValue scalar"
+            ];
+            schemas = {  
               kubernetes = "*.yaml";
-              "http://json.schemastore.org/github-workflow" = ".github/workflows/*";
-              "http://json.schemastore.org/github-action" = ".github/action.{yml,yaml}";
-              "http://json.schemastore.org/ansible-stable-2.9" = "roles/tasks/*.{yml,yaml}";
+
               "https://json.schemastore.org/kustomization.json" = "kustomization.{yml,yaml}";
-              "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook" =
-                "*play*.{yml,yaml}";
+
               "http://json.schemastore.org/chart" = "Chart.{yml,yaml}";
-              "https://json.schemastore.org/dependabot-v2" = ".github/dependabot.{yml,yaml}";
               "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" =
                 "*docker-compose*.{yml,yaml}";
-              "https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json" =
-                "*flow*.{yml,yaml}";
             };
           };
         };
