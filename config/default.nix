@@ -61,5 +61,37 @@
       textwidth = 0;
       foldlevel = 300;
     };
+
+    # --- Added: better YAML indent + richer Treesitter highlights (esp. with Modus) ---
+    extraConfigLua = ''
+      vim.cmd("syntax on")
+
+      -- YAML should be 2-space indented (keep your global 4 for other languages)
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "yaml", "yml" },
+        callback = function()
+          vim.opt_local.shiftwidth = 2
+          vim.opt_local.tabstop = 2
+          vim.opt_local.expandtab = true
+        end,
+      })
+
+      -- Make Treesitter captures more contrasty (works well with Modus Vivendi)
+      local set = vim.api.nvim_set_hl
+
+      -- YAML keys / fields
+      set(0, "@property.yaml", { bold = true })
+      set(0, "@field.yaml",    { bold = true })
+
+      -- Anchors/aliases often show up as labels depending on TS queries
+      set(0, "@label.yaml",    { underline = true })
+
+      -- Make booleans/numbers stand out in config files
+      set(0, "@boolean",       { bold = true })
+      set(0, "@number",        { bold = true })
+
+      -- Comments: readable + slightly styled
+      set(0, "@comment",       { italic = true })
+    '';
   };
 }
