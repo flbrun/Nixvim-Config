@@ -9,6 +9,7 @@
 
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         bash
+        cue
         json
         lua
         make
