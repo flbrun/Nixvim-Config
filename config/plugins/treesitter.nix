@@ -32,10 +32,10 @@
     };
 
     sleuth.enable = true;
-
-    # Optional, but nice for YAML editing
-    vim-yaml.enable = true;
   };
+
+  # Optional, but nice for YAML editing (nixvim dropped plugins.vim-yaml)
+  extraPlugins = [ pkgs.vimPlugins.vim-yaml ];
 
   # YAML: purple keys (left), blue values (right) + 2-space indent
   # Also re-applies after colorscheme changes (Modus overrides highlights late).

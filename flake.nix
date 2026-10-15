@@ -45,6 +45,8 @@
         programs.nixvim = {
           enable = true;
           defaultEditor = true;
+          # nixvim uses its own pkgs instance; copilot-lua needs the unfree copilot-language-server
+          nixpkgs.config.allowUnfree = true;
           imports = [ ./config ];
         };
       };

@@ -64,6 +64,7 @@
         clangd.enable = true;
         terraformls.enable = true;
         kotlin_language_server.enable = true;
+        cue.enable = true;
 
         rust_analyzer = {
           enable = true;
